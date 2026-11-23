@@ -525,4 +525,37 @@ const recipesList = [
 const fullMenuContainer = document.getElementById("fullMenuContainer");
 
 function renderFullMenu() {
- 
+  if (!fullMenuContainer) return;
+
+  const favorites = JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
+  fullMenuContainer.innerHTML = "";
+
+  recipesList.forEach(recipe => {
+    const isFav = favorites.some(fav => fav.title === recipe.name);
+
+    const card = document.createElement("div");
+    card.className = "recipe-item";
+    card.innerHTML = `
+      <img src="${recipe.img}" alt="${recipe.name}" class="recipe-img">
+      <div class="recipe-details">
+        <h3 class="recipe-title">${recipe.name}</h3>
+        <div class="benefit-row">
+          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <span>${recipe.desc || recipe.benefit || ""}</span>
+        </div>
+      </div>
+      <button class="heart-btn ${isFav ? "active" : ""}" aria-label="Favorite">
+        ${isFav ? "♥" : "♡"}
+      </button>
+    `;
+
+    fullMenuContainer.appendChild(card);
+  });
+}
+
+if (fullMenuContainer) {
+  renderFullMenu();
+}
