@@ -527,7 +527,7 @@ const fullMenuContainer = document.getElementById("fullMenuContainer");
 function renderFullMenu() {
   if (!fullMenuContainer) return;
 
-  const favorites = JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
+  let favorites = JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
   fullMenuContainer.innerHTML = "";
 
   recipesList.forEach(recipe => {
@@ -544,13 +544,32 @@ function renderFullMenu() {
             <circle cx="12" cy="12" r="10"/>
             <path d="M9 12l2 2 4-4"/>
           </svg>
-          <span>${recipe.desc || recipe.benefit || ""}</span>
+          <span>${recipe.desc}</span>
         </div>
       </div>
-      <button class="heart-btn ${isFav ? "active" : ""}" aria-label="Favorite">
+      <button type="button" class="heart-btn ${isFav ? "liked" : ""}" aria-label="Favorite">
         ${isFav ? "♥" : "♡"}
       </button>
     `;
+
+    const heartBtn = card.querySelector(".heart-btn");
+    heartBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      favorites = JSON.parse(localStorage.getItem("favoriteRecipes")) || [];
+      const existingIndex = favorites.findIndex(item => item.title === recipe.name);
+
+      if (existingIndex === -1) {
+        favorites.push({ title: recipe.name, benefit: recipe.desc, img: recipe.img });
+        heartBtn.classList.add("liked");
+        heartBtn.innerText = "♥";
+      } else {
+        favorites.splice(existingIndex, 1);
+        heartBtn.classList.remove("liked");
+        heartBtn.innerText = "♡";
+      }
+
+      localStorage.setItem("favoriteRecipes", JSON.stringify(favorites));
+    });
 
     fullMenuContainer.appendChild(card);
   });
