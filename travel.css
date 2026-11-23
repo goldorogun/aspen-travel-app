@@ -1,0 +1,656 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+    font-size: 1.5rem;
+    background-color: #f2f2f2;
+    min-height: 100vh;
+  font-family: Lexend Deca;
+  color: #ffffff;
+  padding-bottom: 68px;
+}
+
+header{
+  background-color:#f5a600;
+  font-family: sans-serif;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Button Container */
+.menu-btn {
+  width: 25px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+/* The Three Lines */
+.bar {
+  width: 70%;
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* =========================================
+   Animation: Transforming into an "X"
+   ========================================= */
+
+/* Top bar: tilts down 45 degrees and moves down */
+.menu-btn.active .bar:nth-child(1) {
+  transform: translateY(14px) rotate(45deg);
+}
+
+/* Middle bar: fades out */
+.menu-btn.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+/* Bottom bar: tilts up 45 degrees and moves up */
+.menu-btn.active .bar:nth-child(3) {
+  transform: translateY(-14px) rotate(-45deg);
+}
+
+/* =========================================
+   Navigation Menu 
+   ======================================== */
+.nav-links {
+  display: none;
+  flex-direction: column;
+  justify-content:left;
+  text-align: left;
+  gap: 16px;
+  margin-top: 24px;
+  
+}
+
+/* Show menu when active */
+.nav-links.open {
+  display: flex;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav-links a:hover {
+  color: #a8c7fa;
+}
+
+.detail{
+    display: flex; 
+    justify-content: space-between; 
+}
+
+.first-line{
+    padding: 4px 16px;
+    color: #1a1a1a;
+}
+
+  /* Grid layout holding the recipe cards side-by-side */
+    .card-grid {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+    }
+
+    /* The White Card Base */
+.recipe-card {
+      background-color: #ffffff;
+      border-radius: 40px;
+      padding: 0 14px 16px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      margin-top: 40px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.recipe-card:active {
+  transform: scale(0.98);
+}
+ 
+    /* Floating Circular Plate */
+ .food-img {
+    width: 82%; 
+      max-width: 130px;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: -35px; 
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15)); 
+      margin-bottom: 7px;
+    }
+
+    /* Text & Rating Area */
+    .card-info {
+      width: 100%;
+      text-align: left;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   } 
+
+    .subtitle {
+      font-size: 20px;
+      color: #9e9e9e;
+    }
+
+    /* Yellow Star Rating Pill */
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #f5a623;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 2px 5px;
+      border-radius: 20px;
+   white-space: nowrap; /* Keeps ★ and 4.9 on the same horizontal line */
+  flex-shrink: 0;
+  }
+
+  /* Orange Banner Section */
+ nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: #f5a600;
+  border-radius: 20px;
+  padding: 16px;
+  margin: 16px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+    /* Left Text & Button Area */
+nav div {
+  flex: 1;
+  min-width: 0; /* Allows text to stay beside the picture well */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+nav div button {
+      background-color: #ffffff;
+      color: #f5a600;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    
+ nav img{
+  position: static; /* Removes any position that causes overlap */
+  width: 40%;
+  max-width: 150px;
+  min-width: 105px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  flex-shrink: 0; /* Prevents the image from getting squeezed */
+}
+ 
+ /* this is for the pop-up in the register button*/
+ .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 16px;
+  color: #f5a600;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 360px;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.close-modal {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
+
+#registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+#registerForm input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.submit-reg-btn {
+  background-color: #f5a600;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+ /* this is the second line */
+ .second-line {
+     padding: 4px 16px;
+ }
+ 
+ /* this is for the list of recipes*/
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Individual white card */
+.recipe-item {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+ /* Make cards feel interactive when tapped*/
+ .recipe-item:active {
+  transform: scale(0.985);
+}
+
+/* Rounded rectangular food thumbnail */
+.recipe-img {
+  width: 90px;
+  height: 80px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Middle text column */
+.recipe-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.recipe-title {
+  font-size: clamp(15px, 2.5vw, 17px);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  text-align: left;
+}
+
+/* Recipe Details Page Layout */
+header.detail-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.detail-badge {
+  background-color: #fff3d6;
+  color: #f5a600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.detail-container {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  box-sizing: border-box;
+}
+
+.detail-hero-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.detail-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.detail-title {
+  margin: 0 0 6px 0;
+  font-size: clamp(22px, 4vw, 28px);
+  color: #1a1a1a;
+}
+
+.detail-subtitle {
+  margin: 0 0 14px 0;
+  color: #f5a600;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.meta-pill {
+  background-color: #f7f3ec;
+  color: #1a1a1a;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.detail-section-title {
+  font-size: 17px;
+  color: #1a1a1a;
+  margin: 18px 0 10px 0;
+}
+
+.detail-ingredients,
+.detail-steps {
+  padding-left: 20px;
+  margin: 0;
+  color: #444444;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.detail-steps li {
+  margin-bottom: 8px;
+}
+
+/* Yellow/gold benefit line with check icon */
+.benefit-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f5b400;
+  font-size: clamp(12px, 2vw, 13px);
+  font-weight: 500;
+}
+
+.check-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* Heart button pinned to the right end of the card */
+.heart-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+  background-color: #fffaf0;
+  color: #f5a600;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.heart-btn.liked {
+  background-color: #f5a600;
+  color: #ffffff;
+  border-color: #f5a600;
+}
+
+/* Responsive adjustment for very narrow mobile screens (320px - 380px) */
+@media (max-width: 380px) {
+  .recipe-item {
+    gap: 10px;
+    padding: 10px;
+  }
+  .recipe-img {
+    width: 72px;
+    height: 70px;
+  }
+}
+    
+  /* the weekly order */
+  .week{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+      
+  width: 100%;
+  max-width: 1000px;  
+  height: auto; 
+  aspect-ratio: 4 / 3;
+  margin: 20px auto;
+  
+      background-image:url("ofada.jpg");
+      background-repeat: no-repeat;            
+    background-size: cover;
+   
+      border-radius: 28px;
+      padding: 12px;
+      gap: 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  }
+  
+  .week_button{
+      background-color: #f5a600;
+      color: #ffffff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      position: absolute;
+      top: 16px;
+      right:20px;
+  }
+  
+  .adjust {
+      text-align: left;
+      margin-top: auto;
+  }
+  
+    /* Footer Container */
+.bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%); 
+      width: 100%;
+      max-width: 500px; 
+      height: 68px;
+      background-color: #ffffff;
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 12px 8px;
+      z-index: 100;
+ }
+
+    /* Standard Nav Icons */
+.nav-item {
+      background: none;
+      border: none;
+      color: #a0a0a0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 8px;
+      text-decoration: none;
+    }
+
+    /* Active Icon (To be in Orange) */
+.nav-item.active {
+      color: #f5a600;
+    }
+
+.nav-item svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Raised Center Globe Button */
+.center-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: #f5a600;
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-22px);
+      box-shadow: 0 6px 14px rgba(245, 166, 0, 0.35);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+.center-btn svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    /* Floating Pill Look */
+@media (min-width: 540px) {
+      .bottom-nav {
+        bottom: 16px;
+        border-radius: 24px;
+      }
+    }
+    
+  .footer_pages{
+      background-color: #ffffff;
+            min-height: 90vh;
+            font-family: Lexend Deca;
+            color: #f5a600;
+            justify-content:center;
+            text-align: center;
+            font-size: 27px;
+            font-weight:400;
+  }
+  
+.footer_pages ul{
+    color: #000000;
+    text-align:left;
+    padding: 24px 160px;
+}
+
+/* this is the menu page*/
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+
+.menu-grid .recipe-item {
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.menu-grid .recipe-item:active {
+  transform: scale(0.98);
+}
